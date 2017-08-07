@@ -9,12 +9,26 @@ public class TransferToNecessitiesSpendingAccountTest {
   @Test
   public void depositingMoneyToAccountIncreasesItsBalance() throws Exception {
 
-    NecessitiesSpendingAccount necessitiesSpendingAccount = new NecessitiesSpendingAccount(10);
+    Account necessitiesSpendingAccount =
+        new Account("Necessities", 10);
 
     necessitiesSpendingAccount.deposit(20);
 
     assertThat(necessitiesSpendingAccount.balance())
         .isEqualTo(30);
+  }
+
+  @Test
+  public void transferFromBankToNecessitiesDecreasesBankBalanceAndIncreasesNecessitiesBalance() throws Exception {
+    Account bank = new Account("Bank", 200);
+    Account necessities = new Account("Necessities", 0);
+
+    bank.transferTo(necessities, 40);
+
+    assertThat(bank.balance())
+        .isEqualTo(160);
+    assertThat(necessities.balance())
+        .isEqualTo(40);
   }
 
 }
