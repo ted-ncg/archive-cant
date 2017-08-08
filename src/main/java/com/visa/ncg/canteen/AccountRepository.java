@@ -1,0 +1,31 @@
+package com.visa.ncg.canteen;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class AccountRepository {
+
+    Map<Long,Account> accRepo = new HashMap<>();
+    long id = 0;
+
+
+    public Account save (Account newAcc)
+    {
+        if(newAcc.getId()!=0)return newAcc;
+
+        id++;
+        newAcc.setId(id);
+        accRepo.put(id,newAcc);
+        return newAcc;
+    }
+
+    public Account findOne(long id) {
+        return accRepo.get(id);
+    }
+
+    public List<Account> findAll() {
+        return new ArrayList<Account>(accRepo.values());
+    }
+}

@@ -12,5 +12,4 @@ public class CanteenApplicationTests {
   @Test
   public void contextLoads() {
   }
-
 }
