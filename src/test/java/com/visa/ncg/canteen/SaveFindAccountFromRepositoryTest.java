@@ -58,6 +58,21 @@ public class SaveFindAccountFromRepositoryTest {
     }
 
     @Test
+    public void findNonExistingAccountReturnsNull() throws Exception
+    {
+        AccountRepository repository = new  AccountRepository();
+        Account newAccountA = new Account("Canteen", 5);
+        Account newAccountB = new Account("Savings", 8);
+        newAccountA =repository.save(newAccountA);
+        newAccountB =repository.save(newAccountB);
+
+        Account account = repository.findOne(100000);
+
+        assertThat(account).isNull();
+    }
+
+
+    @Test
     public  void findTwoExistingAccountsReturnCorrectAccouts() throws Exception
     {
         AccountRepository repository = new  AccountRepository();
