@@ -1,6 +1,8 @@
 package com.visa.ncg.canteen;
 
 import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AccountRepository {
     private HashMap<Long,Account> accountRepository = new HashMap<>();
@@ -23,5 +25,13 @@ public class AccountRepository {
 
     public Account findOne(Long accountId) {
         return accountRepository.get(accountId);
+    }
+
+    public List<Account> findAll() {
+        List<Account> allAccounts = new ArrayList<>();
+        for ( Account account : accountRepository.values()) {
+            allAccounts.add(account);
+        }
+        return allAccounts;
     }
 }
