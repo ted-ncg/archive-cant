@@ -1,5 +1,6 @@
 package com.visa.ncg.canteen;
 
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,14 +19,15 @@ public class AccountRepository {
 
         //can save new Account
         if(account.id() == 0){
-            account.setId(1);
+            account.setId(listOfAccounts.size());
         }
         return account;
     }
 
     public  Account findOne(long id)
     {
-        return listOfAccounts.get(0);
+        return listOfAccounts.stream().filter( account ->
+                account.id() == id).findFirst().orElse(null);
     }
 
     public List<Account> findAll() {

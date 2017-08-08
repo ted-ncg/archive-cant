@@ -20,6 +20,18 @@ public class SaveFindAccountFromRepositoryTest {
     }
 
     @Test
+    public  void saveNewAccountsGeneratesDifferentIds() throws Exception
+    {
+        AccountRepository repository = new  AccountRepository();
+        Account newAccountA = new Account("Canteen", 5);
+        Account newAccountB = new Account("Savings", 8);
+        newAccountA = repository.save(newAccountA);
+        newAccountB = repository.save(newAccountB);
+
+        assertThat(newAccountA.id()).isNotEqualTo(newAccountB.id());
+    }
+
+    @Test
     public void saveExistingAccountLeaveIdUnchaned() throws Exception
     {
         AccountRepository repository = new  AccountRepository();
@@ -35,12 +47,14 @@ public class SaveFindAccountFromRepositoryTest {
     public void findOneExistingAccountReturnsCorrectAccount() throws Exception
     {
         AccountRepository repository = new  AccountRepository();
-        Account newAccount = new Account("Canteen", 5);
-        repository.save(newAccount);
+        Account newAccountA = new Account("Canteen", 5);
+        Account newAccountB = new Account("Savings", 8);
+        newAccountA =repository.save(newAccountA);
+        newAccountB =repository.save(newAccountB);
 
-        Account account = repository.findOne(newAccount.id());
+        Account account = repository.findOne(newAccountB.id());
 
-        assertThat(account).isEqualTo(newAccount);
+        assertThat(account).isEqualTo(newAccountB);
     }
 
     @Test
