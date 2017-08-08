@@ -15,8 +15,7 @@ public class AccountRepository {
     {
         if(newAcc.getId()!=0)return newAcc;
 
-        id++;
-        newAcc.setId(id);
+        newAcc.setId(++id);
         accRepo.put(id,newAcc);
         return newAcc;
     }
