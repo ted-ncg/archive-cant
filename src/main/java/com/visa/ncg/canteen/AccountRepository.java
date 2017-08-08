@@ -21,4 +21,7 @@ public class AccountRepository {
         return account;
     }
 
+    public Account findOne(Long accountId) {
+        return accountRepository.get(accountId);
+    }
 }

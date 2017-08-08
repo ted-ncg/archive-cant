@@ -10,7 +10,7 @@ public class TransferToNecessitiesSpendingAccountTest {
   public void depositingMoneyToAccountIncreasesItsBalance() throws Exception {
 
     Account necessitiesSpendingAccount =
-        new Account("Necessities", 10, null);
+        new Account("Necessities", 10);
 
     necessitiesSpendingAccount.deposit(20);
 
@@ -21,8 +21,8 @@ public class TransferToNecessitiesSpendingAccountTest {
   @Test
   public void transferPositiveMoneyAdjustsBalances() throws Exception {
 
-    Account bank = new Account("Bank", 200, null);
-    Account necessities = new Account("Necessities", 0, null);
+    Account bank = new Account("Bank", 200);
+    Account necessities = new Account("Necessities", 0);
 
     bank.transferTo(necessities, 40);
 

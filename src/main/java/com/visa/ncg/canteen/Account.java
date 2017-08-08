@@ -5,10 +5,10 @@ public class Account {
   private int balance;
   private Long accountId;
 
-  public Account(String type, int initialBalance, Long accountId) {
+  public Account(String type, int initialBalance) {
     this.type = type;
     this.balance = initialBalance;
-    this.accountId = accountId;
+    this.accountId = null;
   }
 
   public int balance() {
