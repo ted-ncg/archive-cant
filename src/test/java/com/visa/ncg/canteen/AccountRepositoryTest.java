@@ -1,15 +1,10 @@
 package com.visa.ncg.canteen;
 
 import org.junit.Test;
-import sun.jvm.hotspot.utilities.Assert;
-
 import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountRepositoryTest {
-
-
 
     @Test
     public void saveAccountReturnsNewObjectWithID() {

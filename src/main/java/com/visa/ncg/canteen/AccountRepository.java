@@ -10,7 +10,6 @@ public class AccountRepository {
     Map<Long,Account> accRepo = new HashMap<>();
     long id = 0;
 
-
     public Account save (Account newAcc)
     {
         if(newAcc.getId()!=0)return newAcc;
@@ -25,6 +24,6 @@ public class AccountRepository {
     }
 
     public List<Account> findAll() {
-        return new ArrayList<Account>(accRepo.values());
+        return new ArrayList<>(accRepo.values());
     }
 }
