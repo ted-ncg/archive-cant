@@ -8,9 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountRepositoryTests {
 
-    //findOne
-    //findAll
-
     public AccountRepositoryTests() {
     }
 
@@ -58,6 +55,27 @@ public class AccountRepositoryTests {
         Account foundAccount = accountRepository.findOne(expectedAccountId);
 
         assertThat(foundAccount.getId()).isEqualTo(expectedAccountId);
+    }
+
+    @Test
+    public void findOneNonExistentAccountReturnsNoAccountWithSave() throws Exception {
+        AccountRepository accountRepository = new AccountRepository();
+        Account account = new Account( "Account", 0);
+
+        accountRepository.save(account);
+
+        Account foundAccount = accountRepository.findOne(new Long(-1));
+
+        assertThat(foundAccount).isNull();
+    }
+
+    @Test
+    public void findOneNonExistentAccountReturnsNoAccountWithoutSave() throws Exception {
+        AccountRepository accountRepository = new AccountRepository();
+
+        Account foundAccount = accountRepository.findOne(new Long(0));
+
+        assertThat(foundAccount).isNull();
     }
 
     @Test

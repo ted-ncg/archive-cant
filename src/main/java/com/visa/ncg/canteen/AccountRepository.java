@@ -24,7 +24,10 @@ public class AccountRepository {
     }
 
     public Account findOne(Long accountId) {
-        return accountRepository.get(accountId);
+        if (accountRepository.containsKey(accountId)) {
+            return accountRepository.get(accountId);
+        }
+        return null;
     }
 
     public List<Account> findAll() {
