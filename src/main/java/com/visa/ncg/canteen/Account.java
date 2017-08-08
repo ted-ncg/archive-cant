@@ -3,16 +3,16 @@ package com.visa.ncg.canteen;
 public class Account {
   private final String type;
   private int balance;
-  private int id;
+  private long id;
 
   public Account(String type, int initialBalance) {
     this.type = type;
     this.balance = initialBalance;
   }
 
-  public int id() { return id; }
+  public long id() { return id; }
 
-  public void setId(int id){ this.id = id; }
+  public void setId(long id){ this.id = id; }
 
   public int balance() {
     return balance;
