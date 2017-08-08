@@ -19,7 +19,8 @@ public class TransferToNecessitiesSpendingAccountTest {
   }
 
   @Test
-  public void transferFromBankToNecessitiesDecreasesBankBalanceAndIncreasesNecessitiesBalance() throws Exception {
+  public void transferPositiveMoneyAdjustsBalances() throws Exception {
+
     Account bank = new Account("Bank", 200);
     Account necessities = new Account("Necessities", 0);
 
