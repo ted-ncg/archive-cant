@@ -8,30 +8,24 @@ import java.util.Map;
 
 public class AccountRepository {
 
-    Map<Long,Account> accountRepository;
+    Map<Long, Account> accountRepository;
     int counter = 1;
 
-    public AccountRepository(){
-
+    public AccountRepository() {
         accountRepository = new HashMap<>();
-
-
-
     }
 
-    public  Account save(Account account)
-    {
+    public Account save(Account account) {
         if (account.getId() == 0) {
             //Save as new account
             account.setId(counter++);
         }
-        accountRepository.put(account.getId(),account);
+        accountRepository.put(account.getId(), account);
 
         return account;
     }
 
-    public  Account findOne(long id)
-    {
+    public Account findOne(long id) {
         return accountRepository.get(id);
     }
 
