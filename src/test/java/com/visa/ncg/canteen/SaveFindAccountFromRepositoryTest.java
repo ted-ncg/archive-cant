@@ -87,5 +87,21 @@ public class SaveFindAccountFromRepositoryTest {
         assertThat(returnedAccounts).isNotNull().isNotEmpty();
         assertThat(returnedAccounts).containsExactly(newAccounts);
     }
-    
+
+    @Test
+    public  void updateExistingAccountsReturnCorrectAccountInformation() throws Exception
+    {
+        AccountRepository repository = new  AccountRepository();
+        Account newAccountA = new Account("Canteen", 5);
+        Account newAccountB = new Account("Savings", 8);
+        newAccountA = repository.save(newAccountA);
+        repository.save(newAccountB);
+
+        newAccountA.setBalance(123);
+        repository.save(newAccountA);
+
+        assertThat(repository.findOne(newAccountA.getId()).getBalance()).isEqualTo(123);
+    }
+
+
 }
