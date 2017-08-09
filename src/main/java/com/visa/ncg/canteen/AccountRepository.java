@@ -9,7 +9,11 @@ public class AccountRepository {
     private Long nextUniqueId = new Long(0);
 
     public AccountRepository() {
+        Account account1 = new Account("Account 1", 0);
+        Account account2 = new Account("Account 2", 0);
 
+        this.save(account1);
+        this.save(account2);
     }
 
     public Account save(Account account) {
@@ -24,17 +28,10 @@ public class AccountRepository {
     }
 
     public Account findOne(Long accountId) {
-        if (accountRepository.containsKey(accountId)) {
-            return accountRepository.get(accountId);
-        }
-        return null;
+        return accountRepository.get(accountId);
     }
 
     public List<Account> findAll() {
-        List<Account> allAccounts = new ArrayList<>();
-        for ( Account account : accountRepository.values()) {
-            allAccounts.add(account);
-        }
-        return allAccounts;
+        return new ArrayList<>(accountRepository.values());
     }
 }
