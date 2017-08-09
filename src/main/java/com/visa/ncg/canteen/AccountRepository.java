@@ -13,6 +13,11 @@ public class AccountRepository {
     public AccountRepository(){
         accountMap = new HashMap<Long, Account>();
         currentIndex = 1;
+        Account account1 = new Account("Account 1", 0);
+        Account account2 = new Account("Account 2", 100);
+
+        this.save(account1);
+        this.save(account2);
     }
 
     public void save(Account account){
