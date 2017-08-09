@@ -16,7 +16,7 @@ public class SaveFindAccountFromRepositoryTest {
 
         newAccount = repository.save(newAccount);
 
-        assertThat(newAccount.id()).isNotEqualTo(0);
+        assertThat(newAccount.getId()).isNotEqualTo(0);
     }
 
     @Test
@@ -28,7 +28,7 @@ public class SaveFindAccountFromRepositoryTest {
         newAccountA = repository.save(newAccountA);
         newAccountB = repository.save(newAccountB);
 
-        assertThat(newAccountA.id()).isNotEqualTo(newAccountB.id());
+        assertThat(newAccountA.getId()).isNotEqualTo(newAccountB.getId());
     }
 
     @Test
@@ -40,7 +40,7 @@ public class SaveFindAccountFromRepositoryTest {
 
         newAccount = repository.save(newAccount);
 
-        assertThat(newAccount.id()).isEqualTo(3);
+        assertThat(newAccount.getId()).isEqualTo(3);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class SaveFindAccountFromRepositoryTest {
         newAccountA =repository.save(newAccountA);
         newAccountB =repository.save(newAccountB);
 
-        Account account = repository.findOne(newAccountB.id());
+        Account account = repository.findOne(newAccountB.getId());
 
         assertThat(account).isEqualTo(newAccountB);
     }
@@ -87,4 +87,5 @@ public class SaveFindAccountFromRepositoryTest {
         assertThat(returnedAccounts).isNotNull().isNotEmpty();
         assertThat(returnedAccounts).containsExactly(newAccounts);
     }
+    
 }
