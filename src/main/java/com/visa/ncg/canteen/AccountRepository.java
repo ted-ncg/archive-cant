@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AccountRepository {
 
@@ -15,9 +16,13 @@ public class AccountRepository {
     }
     public AccountRepository(int numberOfAccounts)
     {
-        for (int i =0; i<numberOfAccounts; i++)
+        for (int i =1; i<=numberOfAccounts; i++)
         {
-            Account a = new Account("bank"+i, i*100);
+            Account a;
+            if(i%3==0)
+                a = new Account("bank", i*200);
+            else
+                a = new Account("necessities", i*10);
             save(a);
         }
     }
@@ -37,4 +42,5 @@ public class AccountRepository {
     public List<Account> findAll() {
         return new ArrayList<>(accRepo.values());
     }
+
 }
