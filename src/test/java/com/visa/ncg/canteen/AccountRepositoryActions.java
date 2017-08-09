@@ -46,6 +46,7 @@ public class AccountRepositoryActions {
         Repository repository = new Repository();
 
         List<Account> accountList = repository.findAll();
-        assertThat(accountList).isEmpty();
+        assertThat(accountList).isNotEmpty();
     }
+
 }

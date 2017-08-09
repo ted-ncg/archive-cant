@@ -11,6 +11,17 @@ public class Account {
     this.ID = 0L;
   }
 
+  public String getType() {
+    return type;
+  }
+
+  public int getBalance() {
+    return balance;
+  }
+
+  public long getID() {
+    return ID;
+  }
 
   public int balance() {
     return balance;
