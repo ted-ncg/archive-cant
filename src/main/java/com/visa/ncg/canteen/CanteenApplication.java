@@ -13,7 +13,7 @@ public class CanteenApplication {
   }
 
   @Bean
-  public static AccountRepository createAccountRepository() {
+  public AccountRepository createAccountRepository() {
     AccountRepository accountRepository = new AccountRepository();
     for(int i = 1; i <= 200; i++) {
         accountRepository.save(new Account("Account" + i,i));

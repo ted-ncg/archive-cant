@@ -12,6 +12,7 @@ public class ApiController {
 
     private AccountRepository accountRepository;
 
+    @Autowired
     public ApiController(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
