@@ -11,17 +11,14 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 public class AccountRepositoryTest {
 
-
     @Test
     public void findAccountFromRepository() throws Exception
     {
         AccountRepository repo = new AccountRepository();
-        //repo.accountRepository.add(new Account("Necessities",20,12345676));
-
         Account acnt = new Account("Necessities",10,12345676);
-        repo.accountRepository.put(acnt.getId(),acnt);
-        assertThat(acnt).isEqualTo(repo.findOne(12345676));
+        repo.save(acnt);
 
+        assertThat(acnt).isEqualTo(repo.findOne(12345676));
     }
 
     @Test
@@ -39,7 +36,7 @@ public class AccountRepositoryTest {
 
 
     @Test
-    public void updateAccoutsInRepository() throws Exception{
+    public void updateAccoutsIsInRepository() throws Exception{
         AccountRepository repo = new AccountRepository();
 
         Account acnt = new Account("Necessities",10);
@@ -52,7 +49,7 @@ public class AccountRepositoryTest {
     }
 
     @Test
-    public void checkUniqunessofIds() throws Exception{
+    public void checkUniqunessOfIds() throws Exception{
         AccountRepository repo = new AccountRepository();
 
         Account acnt = new Account("Necessities",10);
@@ -67,7 +64,7 @@ public class AccountRepositoryTest {
     }
 
     @Test
-    public void findAllAccountsFromRepository() throws Exception
+    public void findAllAccountsOnRepository() throws Exception
     {
         AccountRepository repo = new AccountRepository();
 

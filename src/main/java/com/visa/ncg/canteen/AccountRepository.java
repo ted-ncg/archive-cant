@@ -7,20 +7,29 @@ package com.visa.ncg.canteen;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
-
 
 public class AccountRepository {
 
-    HashMap<Long,Account> accountRepository = new HashMap();
+    private  HashMap<Long,Account> accountRepository;
+
+
+
+    public AccountRepository() {
+
+        accountRepository = new HashMap<>();
+        accountRepository.put(1234L, new Account("Necessities",20,1234));
+        accountRepository.put(1235L, new Account("Savings",30,1235));
+        accountRepository.put(1236L, new Account("Checking",40,1236));
+
+    }
+
 
     Account findOne(long id)
     {
         return accountRepository.get(id);
-
     }
 
-    public void save(Account account)
+    public Account save(Account account)
     {
 
         long new_id = accountRepository.size()*10000 + 1;
@@ -32,20 +41,13 @@ public class AccountRepository {
         else
             accountRepository.put(account.getId(), account);
 
-
-
+        return account;
 
     }
 
     public ArrayList<Account> findAll()
     {
-        ArrayList<Account> accountList = new ArrayList<>();
-
-        for (Account acnt : accountRepository.values()) {
-            accountList.add(acnt);
-        }
-
-        return accountList;
+        return new ArrayList<>(accountRepository.values());
     }
 
 }

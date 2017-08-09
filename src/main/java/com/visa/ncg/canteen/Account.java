@@ -1,15 +1,23 @@
 package com.visa.ncg.canteen;
 
 public class Account {
+
+
   private final String type;
   private int balance;
   private long id;
 
-  public long getId() {
+  public String getType() {
+    return type;
+  }
+
+  public long getId()
+  {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(long id)
+  {
     this.id = id;
   }
 
@@ -20,25 +28,31 @@ public class Account {
     this.id = id;
   }
 
-  public Account(String type, int initialBalance) {
+  public Account(String type, int initialBalance)
+  {
     this.type = type;
     this.balance = initialBalance;
+    this.id = 0;
   }
 
-  public int balance() {
+  public int getBalance()
+  {
     return balance;
   }
 
-  public void deposit(int amount) {
+  public void setBalance(int amount)
+  {
     balance += amount;
   }
 
-  public void transferTo(Account target, int amount) {
+  public void transferTo(Account target, int amount)
+  {
     withdraw(amount);
-    target.deposit(amount);
+    target.setBalance(amount);
   }
 
-  private void withdraw(int amount) {
+  private void withdraw(int amount)
+  {
     balance -= amount;
   }
 }
