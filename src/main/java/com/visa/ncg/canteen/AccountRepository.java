@@ -17,9 +17,6 @@ public class AccountRepository {
     public AccountRepository() {
 
         accountRepository = new HashMap<>();
-        accountRepository.put(1234L, new Account("Necessities",20,1234));
-        accountRepository.put(1235L, new Account("Savings",30,1235));
-        accountRepository.put(1236L, new Account("Checking",40,1236));
 
     }
 
@@ -32,7 +29,7 @@ public class AccountRepository {
     public Account save(Account account)
     {
 
-        long new_id = accountRepository.size()*10000 + 1;
+        long new_id = accountRepository.size()+ 1;
 
         if (account.getId() == 0){
             account.setId(new_id);
