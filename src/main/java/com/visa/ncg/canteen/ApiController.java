@@ -17,11 +17,11 @@ public class ApiController {
 
     @GetMapping ("/api/accounts")
     public List<Account> findAll(){
-        return new ArrayList<>(accountRepository.accountMap.values());
+        return accountRepository.findAll();
     }
 
     @GetMapping ("/api/account/{id}")
     public Account findByID(@PathVariable long id) {
-        return accountRepository.accountMap.get(id);
+        return accountRepository.findOne(id);
     }
 }
