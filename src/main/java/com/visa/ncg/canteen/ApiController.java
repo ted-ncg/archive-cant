@@ -1,6 +1,8 @@
 package com.visa.ncg.canteen;
 
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
@@ -11,12 +13,21 @@ import java.util.List;
 @RestController
 public class ApiController {
 
+    private final Repository repository;
+
+
+    public ApiController(Repository repository) {
+        this.repository = repository;
+    }
+
     @GetMapping("/api/accounts")
     public List<Account> returnAcccount(){
-
-        Repository repository = new Repository();
         return repository.findAll();
+    }
 
+    @GetMapping("api/accounts/{id}")
+    public Account findById(@PathVariable("id") Long id){
+        return repository.find(id);
     }
 
 }
