@@ -14,7 +14,7 @@ public class TransferToNecessitiesSpendingAccountTest {
 
     necessitiesSpendingAccount.deposit(20);
 
-    assertThat(necessitiesSpendingAccount.balance())
+    assertThat(necessitiesSpendingAccount.getBalance())
         .isEqualTo(30);
   }
 
@@ -26,9 +26,9 @@ public class TransferToNecessitiesSpendingAccountTest {
 
     bank.transferTo(necessities, 40);
 
-    assertThat(bank.balance())
+    assertThat(bank.getBalance())
         .isEqualTo(160);
-    assertThat(necessities.balance())
+    assertThat(necessities.getBalance())
         .isEqualTo(40);
   }
 

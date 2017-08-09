@@ -3,7 +3,7 @@ package com.visa.ncg.canteen;
 public class Account {
     private final String type;
     private int balance;
-    long id;
+    private long id;
 
     public Account(String type, int initialBalance) {
         this.type = type;
@@ -11,7 +11,7 @@ public class Account {
         id = 0;
     }
 
-    public int balance() {
+    public int getBalance() {
         return balance;
     }
 
@@ -28,10 +28,12 @@ public class Account {
         return id;
     }
 
-    public void setId(long id) {
+    protected void setId(long id) {
         this.id = id;
     }
-
+    public String getType() {
+        return type;
+    }
     private void withdraw(int amount) {
         balance -= amount;
     }

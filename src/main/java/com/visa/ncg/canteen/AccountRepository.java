@@ -8,8 +8,19 @@ import java.util.Map;
 public class AccountRepository {
 
     Map<Long,Account> accRepo = new HashMap<>();
-    long id = 0;
+    private long id = 0;
 
+    public AccountRepository(){
+
+    }
+    public AccountRepository(int numberOfAccounts)
+    {
+        for (int i =0; i<numberOfAccounts; i++)
+        {
+            Account a = new Account("bank"+i, i*100);
+            save(a);
+        }
+    }
     public Account save (Account newAcc)
     {
         if(newAcc.getId()!=0)return newAcc;
