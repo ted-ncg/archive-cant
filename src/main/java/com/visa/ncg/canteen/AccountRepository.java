@@ -1,5 +1,7 @@
 package com.visa.ncg.canteen;
 
+import org.springframework.stereotype.Service;
+
 import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.HashMap;
