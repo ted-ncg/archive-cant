@@ -32,7 +32,7 @@ public class AccountServiceTest {
 
     @Test
     public void withdrawAmountLessThanBalanceReducesAccountBalance(){
-        //Setup
+        // Setup
         Account a1 = new Account("Bank", 50);
         AccountService accountService = new AccountService();
 
@@ -41,5 +41,45 @@ public class AccountServiceTest {
 
         //Validate
         assertThat(a1.getBalance()).isEqualTo(2);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void depositThrowsExceptionWhenAmountIsNegative(){
+        // Setup
+        Account a1 = new Account("bank", 100);
+        AccountService accountService = new AccountService();
+
+        // Test
+        accountService.deposit(a1, -10);
+
+        // Validate
+    }
+
+    @Test
+    public void depositIncreasesBalance(){
+        // Setup
+        Account a1 = new Account("bank", 0);
+        AccountService accountService = new AccountService();
+
+        // Test
+        accountService.deposit(a1, 20);
+
+        // Validate
+        assertThat(a1.getBalance()).isEqualTo(20);
+    }
+
+    @Test
+    public void transferIncreasesTargetBalanceAndDecreasesSourceBalance() throws Exception{
+        // Setup
+        Account a1 = new Account("bank", 100);
+        Account a2 = new Account("bank", 0);
+        AccountService accountService = new AccountService();
+
+        // Test
+        accountService.transfer(a1, a2, 20);
+
+        // Validate
+        assertThat(a1.getBalance()).isEqualTo(80);
+        assertThat(a2.getBalance()).isEqualTo(20);
     }
 }
