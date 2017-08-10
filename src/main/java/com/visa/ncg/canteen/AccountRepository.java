@@ -24,10 +24,10 @@ public class AccountRepository {
 
     public void save(Account account){
 
-        if(account.ID == null){
-            account.ID = currentIndex;
+        if(account.getId() == 0){
+            account.setId(currentIndex);
             currentIndex++;
-            accountMap.put(account.ID, account);
+            accountMap.put(account.getId(), account);
         }
 
     }

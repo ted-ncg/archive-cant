@@ -13,7 +13,7 @@ public class AccountRepositoryTests {
         Account account = new Account("savings", 100);
         AccountRepository repo = new AccountRepository();
         repo.save(account);
-        assertThat(account.ID).isNotEqualTo(null);
+        assertThat(account.getId()).isNotEqualTo(null);
     }
 
 
@@ -22,8 +22,8 @@ public class AccountRepositoryTests {
         Account account = new Account("savings", 100);
         AccountRepository repo = new AccountRepository();
         repo.save(account);
-        Account retrievedAccount = repo.findOne(account.ID);
-        assertThat(retrievedAccount.ID).isEqualTo(account.ID);
+        Account retrievedAccount = repo.findOne(account.getId());
+        assertThat(retrievedAccount.getId()).isEqualTo(account.getId());
     }
 
     @Test
