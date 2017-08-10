@@ -37,4 +37,8 @@ public class Account {
     private void withdraw(int amount) {
         balance -= amount;
     }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
 }
