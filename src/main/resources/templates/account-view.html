@@ -6,6 +6,6 @@
 </head>
 <body>
     <h1>Account <span th:text="${account.name}">Name</span></h1>
-    <p>Balance: <span th:text="${account.balance}">Balance</span></p>
+    <p>Balance: <span th:text="${#numbers.formatCurrency(account.balance)}">Balance</span></p>
 </body>
 </html>

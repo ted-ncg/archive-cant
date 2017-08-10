@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/" >
+<head>
+    <meta charset="UTF-8">
+    <title>View All Accounts</title>
+
+    <style>
+        table {
+            border: 10px groove coral;
+        }
+        th,td {
+            border: 2px outset mediumseagreen;
+        }
+    </style>
+</head>
+<body>
+    <h3>Accounts Directory</h3>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Balance</th>
+        </tr>
+        <tr th:each="account : ${accounts}">
+            <td><a th:href="@{/account/{id}(id=${account.id})}" th:text="${account.name}">Generic Name</a></td>
+            <td th:text="${#numbers.formatCurrency(account.balance)}">10.50</td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -17,9 +17,11 @@ public class CanteenApplication {
     @Bean
     public AccountRepository createAccountRepository() {
         AccountRepository accountRepository = new AccountRepository();
+
+        String[] accounts = {"CHECKING", "SAVINGS", "MONEY_MARKET", "NECESSITIES", "LUXURIES"};
         Random rand = new Random();
         for (int i = 1; i <= 200; i++) {
-            accountRepository.save(new Account("Account" + i, Math.abs(rand.nextInt()+1)));
+            accountRepository.save(new Account(accounts[rand.nextInt(accounts.length)], Math.abs(rand.nextInt(1000000)+1)));
         }
         return accountRepository;
     }
