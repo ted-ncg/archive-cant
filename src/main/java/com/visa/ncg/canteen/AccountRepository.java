@@ -5,8 +5,12 @@ package com.visa.ncg.canteen;
  *
  */
 
+import org.springframework.stereotype.Repository;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
+
 
 public class AccountRepository {
 
