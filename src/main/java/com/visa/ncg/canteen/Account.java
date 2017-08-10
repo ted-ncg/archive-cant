@@ -1,12 +1,12 @@
 package com.visa.ncg.canteen;
 
 public class Account {
-    private final String type;
+    private final String name;
     private int balance;
     private long id;
 
     public Account(String type, int initialBalance) {
-        this.type = type;
+        this.name = type;
         this.balance = initialBalance;
         id = 0;
     }
@@ -31,8 +31,8 @@ public class Account {
     protected void setId(long id) {
         this.id = id;
     }
-    public String getType() {
-        return type;
+    public String getName() {
+        return name;
     }
     private void withdraw(int amount) {
         balance -= amount;
