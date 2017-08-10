@@ -10,23 +10,23 @@ import java.util.List;
  * Created by nedsouza on 8/8/2017.
  */
 
-public class Repository {
+public class AccountRepository {
 
     private HashMap<Long, Account> accountRepository;
 
-    public Repository() {
+    public AccountRepository() {
         accountRepository = new HashMap<>();
     }
 
 
-    public long save(Account account)
+    public Account save(Account account)
     {
         if (account.ID ==0L )
         {
             account.ID = accountRepository.size()+1;
             accountRepository.put(account.ID, account);
         }
-        return account.ID;
+        return account;
     }
 
 

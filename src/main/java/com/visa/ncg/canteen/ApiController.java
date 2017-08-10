@@ -11,20 +11,21 @@ import java.util.List;
 @RestController
 public class ApiController {
 
-    private final Repository repository;
+    private final AccountRepository accountRepository;
 
 
-    public ApiController(Repository repository) {
-        this.repository = repository;
+    public ApiController(AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
     }
 
     @GetMapping("/api/accounts")
     public List<Account> returnAcccount(){
-        return repository.findAll();
+        return accountRepository.findAll();
     }
 
     @GetMapping("/api/accounts/{id}")
     public Account findById(@PathVariable("id") Long id){
-        return repository.find(id);
+        System.out.println("Account findByID: " + accountRepository.find(id));
+        return accountRepository.find(id);
     }
 }

@@ -12,16 +12,16 @@ public class CanteenApplication {
   }
 
   @Bean
-  public Repository createRepository(){
-    Repository repository = new Repository();
+  public AccountRepository createRepository(){
+    AccountRepository accountRepository = new AccountRepository();
 
     Account account1 = new Account("Bank", 100);
     Account account2 = new Account("Necessities", 250);
 
-    repository.save(account1);
-    repository.save(account2);
+    accountRepository.save(account1);
+    accountRepository.save(account2);
 
-    return repository;
+    return accountRepository;
   }
 
 }
