@@ -10,15 +10,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class WebController {
 
     private AccountRepository accountRepository;
-    public WebController(AccountRepository repository)
-    {
+    public WebController(AccountRepository repository) {
         this.accountRepository = repository;
     }
 
-    @GetMapping("/")
-    public  String root(){
-        return  "index";
-    }
 
     @GetMapping("/account/{id}")
     public  String account(Model model, @PathVariable("id") String id){
@@ -26,9 +21,9 @@ public class WebController {
         return "account-view";
     }
 
-    @GetMapping("/account")
-    public  String account(Model model){
-        model.addAttribute("account", accountRepository.findOne(1));
-        return "account-view";
+    @GetMapping("/accounts")
+    public  String allAccounts(Model model){
+        model.addAttribute("accounts", accountRepository.findAll());
+        return "accounts";
     }
 }
