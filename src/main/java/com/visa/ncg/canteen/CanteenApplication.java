@@ -15,4 +15,9 @@ public class CanteenApplication {
   public AccountRepository createAccountRepository() {
     return new AccountRepository();
   }
+
+  @Bean
+  public Account createAccount() {
+    return new Account("My savings account", 0);
+  }
 }
