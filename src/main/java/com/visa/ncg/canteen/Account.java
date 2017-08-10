@@ -23,10 +23,6 @@ public class Account {
     return ID;
   }
 
-  public int balance() {
-    return balance;
-  }
-
   public void deposit(int amount) {
     balance += amount;
   }
@@ -39,4 +35,8 @@ public class Account {
   private void withdraw(int amount) {
     balance -= amount;
   }
+
+  public void setBalance(int balance) {
+        this.balance = balance;
+    }
 }

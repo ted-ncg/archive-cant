@@ -9,7 +9,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by nedsouza on 8/8/2017.
  */
-public class AccountAccountRepositoryActions {
+public class AccountRepositoryActions {
 
     @Test
     public void saveAccountIDIfNotNull() throws Exception {

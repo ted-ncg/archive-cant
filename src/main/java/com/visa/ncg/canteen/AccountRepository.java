@@ -24,8 +24,8 @@ public class AccountRepository {
         if (account.ID ==0L )
         {
             account.ID = accountRepository.size()+1;
-            accountRepository.put(account.ID, account);
         }
+        accountRepository.put(account.ID, account);
         return account;
     }
 
@@ -39,4 +39,5 @@ public class AccountRepository {
 
         return (new ArrayList<Account>(accountRepository.values()));
     }
+
 }
