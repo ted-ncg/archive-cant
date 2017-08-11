@@ -11,10 +11,6 @@ public class CanteenApplication {
         SpringApplication.run(CanteenApplication.class, args);
     }
 
-    @Bean
-    public AccountRepository createAccountRepository(){
-        return new AccountRepository(5);
-    }
 
     @Bean
     public CurrencyService createCurrencyService(){

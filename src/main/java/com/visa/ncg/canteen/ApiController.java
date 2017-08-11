@@ -1,6 +1,6 @@
 package com.visa.ncg.canteen;
 
-import org.springframework.ui.Model;
+import com.visa.ncg.canteen.data.AccountRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,23 +8,23 @@ import java.util.List;
 @RestController
 public class ApiController {
 
-    private AccountRepository accountRepository;
+    private AccountRepository inMemoryAccountRepository;
 
-    public ApiController(AccountRepository accountRepository){
+    public ApiController(AccountRepository inMemoryAccountRepository){
 
-        this.accountRepository = accountRepository;
+        this.inMemoryAccountRepository = inMemoryAccountRepository;
     }
 
     @GetMapping("/api/accounts")
     public List<Account> getAllAccounts(){
 
-        return accountRepository.findAll();
+        return (List<Account>) inMemoryAccountRepository.findAll();
     }
 
     @GetMapping("/api/accounts/{id}")
     public Account findById(@PathVariable("id") String id){
 
-        return accountRepository.findOne(Long.parseLong(id));
+        return inMemoryAccountRepository.findOne(Long.parseLong(id));
     }
 
 

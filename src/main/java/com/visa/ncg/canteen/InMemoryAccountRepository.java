@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class AccountRepository {
+public class InMemoryAccountRepository {
 
     Map<Long,Account> accRepo = new HashMap<>();
     private long id = 0;
 
-    public AccountRepository(){
+    public InMemoryAccountRepository(){
 
     }
-    public AccountRepository(int numberOfAccounts)
+    public InMemoryAccountRepository(int numberOfAccounts)
     {
 
         for (int i =1; i<=numberOfAccounts; i++)

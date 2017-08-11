@@ -1,5 +1,6 @@
 package com.visa.ncg.canteen;
 
+import com.visa.ncg.canteen.data.AccountRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +14,11 @@ public class RootController {
 
     private CurrencyService currencyService;
     private AccountService accountService;
-    private AccountRepository accountRepository;
+    private AccountRepository inMemoryAccountRepository;
 
-    public RootController(AccountRepository accountRepository, CurrencyService currencyService, AccountService accountService){
+    public RootController(AccountRepository inMemoryAccountRepository, CurrencyService currencyService, AccountService accountService){
 
-        this.accountRepository = accountRepository;
+        this.inMemoryAccountRepository = inMemoryAccountRepository;
         this.accountService = accountService;
         this.currencyService = currencyService;
     }
@@ -26,13 +27,13 @@ public class RootController {
     @GetMapping("/accounts")
     public String viewAllAccounts(Model model){
 
-        model.addAttribute("accounts", accountRepository.findAll());
+        model.addAttribute("accounts", inMemoryAccountRepository.findAll());
         return "accounts";
     }
 
     @GetMapping("/account/{id}")
     public String root(Model model, @PathVariable("id") String id){
-        Account account = accountRepository.findOne(Long.parseLong(id));
+        Account account = inMemoryAccountRepository.findOne(Long.parseLong(id));
         model.addAttribute(account);
 
         model.addAttribute("gbp", currencyService.convertToGbp(account.getBalance()));
@@ -41,7 +42,7 @@ public class RootController {
 
     @GetMapping("/withdraw/{id}")
     public String withdrawGet(Model model, @PathVariable("id") long id){
-        Account account = accountRepository.findOne(id);
+        Account account = inMemoryAccountRepository.findOne(id);
         model.addAttribute(account);
 
         WithdrawForm withdrawForm = new WithdrawForm();
@@ -53,7 +54,7 @@ public class RootController {
 
     @PostMapping("/withdraw")
     public String withdrawPost(@ModelAttribute WithdrawForm withdrawForm){
-        Account account = accountRepository.findOne(withdrawForm.getAccountId());
+        Account account = inMemoryAccountRepository.findOne(withdrawForm.getAccountId());
         accountService.withdraw(account, withdrawForm.getAmount());
         return "redirect:/account/" + withdrawForm.getAccountId();
     }
