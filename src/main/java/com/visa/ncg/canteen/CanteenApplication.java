@@ -1,5 +1,7 @@
 package com.visa.ncg.canteen;
 
+import com.visa.ncg.canteen.data.AccountRepositoryInMemory;
+import com.visa.ncg.canteen.domain.Account;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -12,12 +14,8 @@ public class CanteenApplication {
   }
 
   @Bean
-  public AccountRepository createAccountRepository() {
-    return new AccountRepository();
-  }
-
-  @Bean
   public Account createAccount() {
     return new Account("My savings account", 0);
   }
+
 }

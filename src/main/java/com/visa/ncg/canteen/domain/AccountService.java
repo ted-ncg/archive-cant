@@ -1,5 +1,6 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.domain;
 
+import com.visa.ncg.canteen.domain.Account;
 import org.springframework.stereotype.Service;
 
 @Service

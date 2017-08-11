@@ -1,5 +1,11 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.web;
 
+import com.visa.ncg.canteen.domain.AccountRepository;
+import com.visa.ncg.canteen.domain.AccountService;
+import com.visa.ncg.canteen.data.AccountRepositoryInMemory;
+import com.visa.ncg.canteen.domain.Account;
+import com.visa.ncg.canteen.conversion.ConvertedCurrency;
+import com.visa.ncg.canteen.domain.CurrencyService;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

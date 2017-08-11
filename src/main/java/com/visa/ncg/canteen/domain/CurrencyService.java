@@ -1,16 +1,15 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.domain;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
 @Service
 public class CurrencyService {
 
-    int convertToGbp(int amount) {
+    public int convertToGbp(int amount) {
         RestTemplate restTemplate = new RestTemplate();
         String trampolineURL = "http://jitterted-currency-conversion.herokuapp.com/convert?from=USD&to=GBP&amount={amount}";
         Map<String, String> params = new HashMap<>();

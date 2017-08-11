@@ -1,10 +1,12 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.api;
 
+import com.visa.ncg.canteen.data.AccountRepositoryInMemory;
+import com.visa.ncg.canteen.domain.Account;
+import com.visa.ncg.canteen.domain.AccountRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController

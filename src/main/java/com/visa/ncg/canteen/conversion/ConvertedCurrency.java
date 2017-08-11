@@ -1,4 +1,4 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.conversion;
 
 public class ConvertedCurrency {
 

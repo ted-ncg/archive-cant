@@ -1,18 +1,18 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.data;
 
-import org.springframework.stereotype.Service;
+import com.visa.ncg.canteen.domain.Account;
+import org.springframework.data.repository.CrudRepository;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
-public class AccountRepository {
+public class AccountRepositoryInMemory {
 
     HashMap<Long, Account> accountMap;
     long currentIndex;
 
-    public AccountRepository(){
+    public AccountRepositoryInMemory(){
         accountMap = new HashMap<Long, Account>();
         currentIndex = 1;
         Account account1 = new Account("Account 1", 100);
