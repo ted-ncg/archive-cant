@@ -6,6 +6,9 @@
 </head>
 <body>
 <h1>Account <span th:text="${account.name}">Name</span></h1>
-<p>Balance: 100</p>
+<p>Balance: <span th:text="${account.balance}">100</span</p>
+<br/>
+Want to: <a th:href="@{/withdraw/{id}(id=${account.id})}">Spend Money?</a>
+
 </body>
 </html>

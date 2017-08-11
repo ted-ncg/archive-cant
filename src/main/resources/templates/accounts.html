@@ -14,7 +14,7 @@
     <tr th:each="account : ${accounts}">
         <td th:text="${account.name}">Savings</td>
         <td th:text="${account.balance}">100</td>
-        <td> <a th:href="@{/account/{id}(id=${account.id})}">Account</a></td>
+        <td> <a th:href="@{/account/{id}(id=${account.id})}">View Account</a></td>
     </tr>
 </table>
 </body>
