@@ -1,5 +1,7 @@
 package com.visa.ncg.canteen;
 
+import com.visa.ncg.canteen.domain.Account;
+import com.visa.ncg.canteen.data.InMemoryAccountRepository;
 import org.junit.Test;
 
 import java.util.List;
@@ -15,7 +17,7 @@ public class AccountRepositoryActions {
     public void saveAccountIDIfNotNull() throws Exception {
 
         Account newParent = new Account("Necessities", 10);
-        AccountRepository accountRepository = new AccountRepository();
+        InMemoryAccountRepository accountRepository = new InMemoryAccountRepository();
 
         assertThat(accountRepository.save(newParent))
                 .isNotEqualTo(0L);
@@ -24,26 +26,26 @@ public class AccountRepositoryActions {
     @Test
     public void findAccountIDIfNotExists() throws Exception {
         Account newParent = new Account("Necessities", 10);
-        AccountRepository accountRepository = new AccountRepository();
+        InMemoryAccountRepository accountRepository = new InMemoryAccountRepository();
 
-        assertThat(accountRepository.find(newParent.id))
+        assertThat(accountRepository.find(newParent.getId()))
                 .isEqualTo(null);
     }
 
     @Test
     public void findAccountIDIfExists() throws Exception {
         Account newParent = new Account("Necessities", 10);
-        AccountRepository accountRepository = new AccountRepository();
+        InMemoryAccountRepository accountRepository = new InMemoryAccountRepository();
 
         accountRepository.save(newParent);
 
-        assertThat(accountRepository.find(newParent.id))
+        assertThat(accountRepository.find(newParent.getId()))
                 .isNotEqualTo(null);
     }
 
     @Test
     public void findAll() throws Exception {
-        AccountRepository accountRepository = new AccountRepository();
+        InMemoryAccountRepository accountRepository = new InMemoryAccountRepository();
 
         List<Account> accountList = accountRepository.findAll();
         assertThat(accountList).isNotEmpty();

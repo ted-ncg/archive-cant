@@ -1,18 +1,18 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.web;
+
+import com.visa.ncg.canteen.conversion.ConversionResponse;
 
 /**
  * Created by nedsouza on 8/11/2017.
  */
-public class Currency {
+public class ConversionResponseWebModel {
 
     private String from;
     private String to;
     private int converted;
 
-    public Currency(ConversionPOJO pojo, String from) {
-        this.from = from;
-        this.to = pojo.getCurrency();
-        this.converted = pojo.getConverted();
+    public ConversionResponseWebModel() {
+
     }
 
     public String getFrom() {

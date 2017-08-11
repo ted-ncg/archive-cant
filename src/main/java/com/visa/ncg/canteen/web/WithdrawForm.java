@@ -1,21 +1,21 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.web;
 
 /**
  * Created by nedsouza on 8/11/2017.
  */
 public class WithdrawForm {
-    private int amount;
+    private int converted;
     private long accountId;
 
     public WithdrawForm() {
     }
 
-    public int getAmount() {
-        return amount;
+    public int getConverted() {
+        return converted;
     }
 
-    public void setAmount(int amount) {
-        this.amount = amount;
+    public void setConverted(int converted) {
+        this.converted = converted;
     }
 
     public long getAccountId() {

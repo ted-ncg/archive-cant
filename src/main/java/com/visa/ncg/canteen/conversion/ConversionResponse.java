@@ -1,9 +1,9 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.conversion;
 
 /**
  * Created by nedsouza on 8/11/2017.
  */
-public class ConversionPOJO {
+public class ConversionResponse {
     private int converted;
     private String currency;
 

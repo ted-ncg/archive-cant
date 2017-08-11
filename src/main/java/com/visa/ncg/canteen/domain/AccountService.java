@@ -1,12 +1,26 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.domain;
+
+import com.visa.ncg.canteen.data.AccountRepository;
+import org.springframework.stereotype.Service;
 
 /**
  * Created by nedsouza on 8/10/2017.
  */
+@Service
 public class AccountService {
     AccountRepository accountRepository;
 
     public AccountService( AccountRepository accountRepository) {
+        this.accountRepository = accountRepository;
+    }
+
+    public AccountService (){}
+
+    public AccountRepository getAccountRepository() {
+        return accountRepository;
+    }
+
+    public void setAccountRepository(AccountRepository accountRepository) {
         this.accountRepository = accountRepository;
     }
 

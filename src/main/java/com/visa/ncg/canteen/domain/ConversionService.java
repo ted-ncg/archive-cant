@@ -1,5 +1,7 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.domain;
 
+import com.visa.ncg.canteen.conversion.ConversionResponse;
+import com.visa.ncg.canteen.web.ConversionResponseWebModel;
 import org.springframework.web.client.RestTemplate;
 import java.util.HashMap;
 import java.util.Map;
@@ -7,15 +9,15 @@ import java.util.Map;
 /**
  * Created by nedsouza on 8/11/2017.
  */
-public class CurrencyService {
+public class ConversionService {
 
 
-    public CurrencyService() {
+    public ConversionService() {
     }
 
     RestTemplate restTemplate = new RestTemplate();
 
-    Currency convertToGBP(int amount){
+    public int convertToGBP(int amount){
 
         String currencyTransferUrl = "http://jitterted-currency-conversion.herokuapp.com/convert?from={from}&to={to}&amount={amount}";
 
@@ -26,12 +28,10 @@ public class CurrencyService {
         params.put("to", "GBP");
         params.put("amount",String.valueOf(amount));
 
-        ConversionPOJO conversionPOJO = restTemplate
-                .getForObject(currencyTransferUrl, ConversionPOJO.class, params);
+        ConversionResponse conversionResponse = restTemplate
+                .getForObject(currencyTransferUrl, ConversionResponse.class, params);
 
-        Currency currency = new Currency(conversionPOJO, from);
-
-        return currency;
+        return conversionResponse.getConverted();
     }
 
 }

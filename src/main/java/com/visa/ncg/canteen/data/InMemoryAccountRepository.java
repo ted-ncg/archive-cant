@@ -1,4 +1,7 @@
-package com.visa.ncg.canteen;
+package com.visa.ncg.canteen.data;
+
+import com.visa.ncg.canteen.domain.Account;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,22 +11,23 @@ import java.util.List;
  * Created by nedsouza on 8/8/2017.
  */
 
-public class AccountRepository {
+@Service
+public class InMemoryAccountRepository {
 
     private HashMap<Long, Account> accountRepository;
 
-    public AccountRepository() {
+    public InMemoryAccountRepository() {
         accountRepository = new HashMap<>();
     }
 
 
     public Account save(Account account)
     {
-        if (account.id ==0L )
+        if (account.getId() ==0L )
         {
-            account.id = accountRepository.size()+1;
+            account.setId(accountRepository.size()+1);
         }
-        accountRepository.put(account.id, account);
+        accountRepository.put(account.getId(), account);
         return account;
     }
 
