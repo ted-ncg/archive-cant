@@ -1,18 +1,31 @@
 package com.visa.ncg.canteen;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Account {
-  private final String name;
+  private String name;
   private int balance;
-  private long id;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
+
+  public  Account()
+  {
+
+  }
 
   public Account(String name, int initialBalance) {
     this.name = name;
     this.balance = initialBalance;
+    this.id = 0L;
   }
 
-  public long getId() { return id; }
 
-  public void setId(long id){ this.id = id; }
 
   public int getBalance() {
     return balance;
@@ -35,5 +48,13 @@ public class Account {
 
   public String getName() {
     return name;
+  }
+
+  public Long getId() {
+    return id;
+  }
+
+  public void setId(Long id) {
+    this.id = id;
   }
 }

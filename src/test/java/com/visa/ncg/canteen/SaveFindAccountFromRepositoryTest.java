@@ -11,7 +11,7 @@ public class SaveFindAccountFromRepositoryTest {
     @Test
     public void saveNewAccoutWithoutIdGeneratesID() throws Exception
     {
-        AccountRepository repository = new  AccountRepository();
+        InMemoryAccountRepository repository = new InMemoryAccountRepository();
         Account newAccount = new Account("Canteen", 0);
 
         newAccount = repository.save(newAccount);
@@ -22,7 +22,7 @@ public class SaveFindAccountFromRepositoryTest {
     @Test
     public  void saveNewAccountsGeneratesDifferentIds() throws Exception
     {
-        AccountRepository repository = new  AccountRepository();
+        InMemoryAccountRepository repository = new InMemoryAccountRepository();
         Account newAccountA = new Account("Canteen", 5);
         Account newAccountB = new Account("Savings", 8);
         newAccountA = repository.save(newAccountA);
@@ -34,9 +34,9 @@ public class SaveFindAccountFromRepositoryTest {
     @Test
     public void saveExistingAccountLeaveIdUnchaned() throws Exception
     {
-        AccountRepository repository = new  AccountRepository();
+        InMemoryAccountRepository repository = new InMemoryAccountRepository();
         Account newAccount = new Account("Canteen", 0);
-        newAccount.setId(3);
+        newAccount.setId(3L);
 
         newAccount = repository.save(newAccount);
 
@@ -46,7 +46,7 @@ public class SaveFindAccountFromRepositoryTest {
     @Test
     public void findOneExistingAccountReturnsCorrectAccount() throws Exception
     {
-        AccountRepository repository = new  AccountRepository();
+        InMemoryAccountRepository repository = new InMemoryAccountRepository();
         Account newAccountA = new Account("Canteen", 5);
         Account newAccountB = new Account("Savings", 8);
         newAccountA =repository.save(newAccountA);
@@ -60,7 +60,7 @@ public class SaveFindAccountFromRepositoryTest {
     @Test
     public void findNonExistingAccountReturnsNull() throws Exception
     {
-        AccountRepository repository = new  AccountRepository();
+        InMemoryAccountRepository repository = new InMemoryAccountRepository();
         Account newAccountA = new Account("Canteen", 5);
         Account newAccountB = new Account("Savings", 8);
         newAccountA =repository.save(newAccountA);
@@ -75,7 +75,7 @@ public class SaveFindAccountFromRepositoryTest {
     @Test
     public  void findTwoExistingAccountsReturnCorrectAccouts() throws Exception
     {
-        AccountRepository repository = new  AccountRepository();
+        InMemoryAccountRepository repository = new InMemoryAccountRepository();
         Account newAccountA = new Account("Canteen", 5);
         Account newAccountB = new Account("Savings", 8);
         repository.save(newAccountA);
@@ -91,7 +91,7 @@ public class SaveFindAccountFromRepositoryTest {
     @Test
     public  void updateExistingAccountsReturnCorrectAccountInformation() throws Exception
     {
-        AccountRepository repository = new  AccountRepository();
+        InMemoryAccountRepository repository = new InMemoryAccountRepository();
         Account newAccountA = new Account("Canteen", 5);
         Account newAccountB = new Account("Savings", 8);
         newAccountA = repository.save(newAccountA);
