@@ -8,10 +8,11 @@
 
 
 <h1>Account : <span th:text="${account.type}"> Name </span></h1>
-<h3>Balance: <span th:text="${account.balance}"> Balance </span></h3>
+<h3> USD Balance: <span th:text="${account.balance}"> Balance </span></h3>
+<h3> GBP Balance: <span th:text="${account.balance}"> Balance </span></h3>
 
 <br/>
-Want to:<a th:href="@{/withdraw/{id}(id=${account.id})}"> Spend Money</a>
+Want to <a th:href="@{/withdraw/{id}(id=${account.id})}"> Spend Money</a>
 
 </body>
 </html>

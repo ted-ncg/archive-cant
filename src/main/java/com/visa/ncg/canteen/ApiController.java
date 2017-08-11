@@ -18,11 +18,13 @@ import java.util.List;
 public class ApiController {
 
     private final AccountRepository repository;
+    private final CurrencyService currencyService;
 
     @Autowired
-    public ApiController(AccountRepository repository)
+    public ApiController(AccountRepository repository, CurrencyService currencyService)
     {
         this.repository = repository;
+        this.currencyService=currencyService;
     }
 
     AccountService service = new AccountService();
@@ -34,6 +36,7 @@ public class ApiController {
         Account account = repository.findOne(id);
 
         model.addAttribute("account", account);
+        model.addAttribute("converted", currencyService.convertToGbp(account.getBalance()));
         return "account-view";
     }
 
