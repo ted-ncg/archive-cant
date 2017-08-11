@@ -26,7 +26,7 @@ public class AccountRepositoryActions {
         Account newParent = new Account("Necessities", 10);
         AccountRepository accountRepository = new AccountRepository();
 
-        assertThat(accountRepository.find(newParent.ID))
+        assertThat(accountRepository.find(newParent.id))
                 .isEqualTo(null);
     }
 
@@ -37,7 +37,7 @@ public class AccountRepositoryActions {
 
         accountRepository.save(newParent);
 
-        assertThat(accountRepository.find(newParent.ID))
+        assertThat(accountRepository.find(newParent.id))
                 .isNotEqualTo(null);
     }
 

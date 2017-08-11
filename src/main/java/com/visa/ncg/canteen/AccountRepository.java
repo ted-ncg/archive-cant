@@ -1,7 +1,5 @@
 package com.visa.ncg.canteen;
 
-import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,11 +19,11 @@ public class AccountRepository {
 
     public Account save(Account account)
     {
-        if (account.ID ==0L )
+        if (account.id ==0L )
         {
-            account.ID = accountRepository.size()+1;
+            account.id = accountRepository.size()+1;
         }
-        accountRepository.put(account.ID, account);
+        accountRepository.put(account.id, account);
         return account;
     }
 
