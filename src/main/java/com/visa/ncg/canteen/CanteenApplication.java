@@ -15,4 +15,15 @@ public class CanteenApplication {
     public AccountRepository createAccountRepository(){
         return new AccountRepository(5);
     }
+
+    @Bean
+    public CurrencyService createCurrencyService(){
+        return new CurrencyService();
+    }
+
+
+    @Bean
+    public AccountService createAccountService(){
+        return new AccountService();
+    }
 }

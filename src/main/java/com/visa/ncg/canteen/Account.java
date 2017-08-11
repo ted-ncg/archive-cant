@@ -5,8 +5,8 @@ public class Account {
     private int balance;
     private long id;
 
-    public Account(String type, int initialBalance) {
-        this.name = type;
+    public Account(String name, int initialBalance) {
+        this.name = name;
         this.balance = initialBalance;
         id = 0;
     }
@@ -31,9 +31,11 @@ public class Account {
     protected void setId(long id) {
         this.id = id;
     }
+
     public String getName() {
         return name;
     }
+
     private void withdraw(int amount) {
         balance -= amount;
     }

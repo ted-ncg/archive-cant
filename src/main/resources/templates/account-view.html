@@ -5,7 +5,11 @@
     <title>Account Information</title>
 </head>
 <body>
-<h1>Account <span th:text="${account.name}">Name</span></h1>
-<p>Balanace: 100</p>
+<h1>Account <span th:text="${account.Name}"></span></h1>
+<p>USD Balance: $<span th:text="${account.balance}"></span></p>
+<p>GBP Balance: €<span th:text="${gbp}"></span></p>
+
+<br/>
+    Want to: <a href="@{/withdraw/{id}">Spend Money?</a>
 </body>
 </html>
