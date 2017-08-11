@@ -28,6 +28,9 @@ public class AccountRepository {
     }
 
     public Account findOne(long id) {
+        if (!accountRepository.containsKey(id)){
+            throw new IllegalArgumentException();
+        }
         return accountRepository.get(id);
     }
 

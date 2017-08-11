@@ -1,25 +1,26 @@
 package com.visa.ncg.canteen;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class WebController {
 
     private AccountRepository accountRepository;
-    public WebController(AccountRepository repository) {
+    private CurrencyService currencyService;
+    public WebController(AccountRepository repository, CurrencyService service) {
         this.accountRepository = repository;
+        this.currencyService = service;
     }
 
-
     @GetMapping("/account/{id}")
-    public  String account(Model model, @PathVariable("id") String id){
-        model.addAttribute("account", accountRepository.findOne(Long.parseLong(id)));
+    public  String account(Model model, @PathVariable("id") Long id){
+        model.addAttribute("account", accountRepository.findOne(id));
+        Integer gbp = currencyService.convertToGbp(accountRepository.findOne(id).getBalance());
+        model.addAttribute("gbp", gbp);
         return "account-view";
     }
 
@@ -52,7 +53,13 @@ public class WebController {
         // execute the withdraw on that account via the service
 
         service.withdraw(accountRepository.findOne(accountID), form.getAmount());
-        
+
         return "redirect:/account/" + form.getAccountId();
+    }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public String handleAppException(IllegalArgumentException ex) {
+        return ex.getMessage();
     }
 }
