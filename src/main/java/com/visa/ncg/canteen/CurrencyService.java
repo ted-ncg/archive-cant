@@ -1,33 +1,35 @@
 package com.visa.ncg.canteen;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+@Service
 public class CurrencyService {
 
     int convertToGbp(int amount) {
         RestTemplate restTemplate = new RestTemplate();
-        String trampolineURL = "http://trampoline.io/convert?from=USD&to=GBP&amount={amount}";
+        String trampolineURL = "http://jitterted-currency-conversion.herokuapp.com/convert?from=USD&to=GBP&amount={amount}";
         Map<String, String> params = new HashMap<>();
         params.put("amount", String.valueOf(amount));
         Currency converted_amount = restTemplate.getForObject(trampolineURL, Currency.class, params);
-        return converted_amount.getConverted().intValueExtract();
+        return (int) converted_amount.getConverted();
     }
 }
 
 class Currency {
 
     String currency;
-    BigDecimal converted;
+    float converted;
 
-    public BigDecimal getConverted() {
+    public float getConverted() {
         return converted;
     }
 
-    public void setConverted(BigDecimal converted) {
+    public void setConverted(float converted) {
         this.converted = converted;
     }
 

@@ -25,8 +25,12 @@ public class RootController {
     @GetMapping("/account/{id}")
     public String account(Model model, @PathVariable long id) {
         Account account = repo.findOne(id);
+        CurrencyService currencyService = new CurrencyService();
+        ConvertedCurrency convertedCurrency = new ConvertedCurrency();
+        convertedCurrency.setConvertedAmount(currencyService.convertToGbp(account.getBalance()));
         if (account == null) throw new OrderNotFoundException(id);
         model.addAttribute("account", account);
+        model.addAttribute("convertedCurrency", convertedCurrency);
         return "account-view";
     }
 
