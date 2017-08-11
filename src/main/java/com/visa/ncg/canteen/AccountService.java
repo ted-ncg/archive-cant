@@ -5,12 +5,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class AccountService {
 
-    public void withdraw(Account account, int balance) {
+    public void withdraw(Account account, int amount) {
 
         int initialAccountBalance = account.getBalance();
 
-        if(initialAccountBalance > balance && balance > 0) {
-            account.setBalance(initialAccountBalance - balance);
+        if(initialAccountBalance > amount && amount > 0) {
+            account.setBalance(initialAccountBalance - amount);
         } else{
             throw new IllegalArgumentException("Broken Account Service transfer");
         }

@@ -7,5 +7,6 @@
 <body>
     <h1>Account <span th:text="${account.name}">Name</span></h1>
     <p>Balance: <span th:text="${#numbers.formatCurrency(account.balance)}">Balance</span></p>
+    <p><a th:href="@{/withdraw/{id}(id=${account.id})}"e>Spend Money?</a></p>
 </body>
 </html>
