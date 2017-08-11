@@ -1,86 +1,81 @@
 package com.visa.ncg.canteen;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
  * Created by djose on 8/9/17.
  */
 
-@RestController
+@Controller
 public class ApiController {
 
     private final AccountRepository repository;
 
     @Autowired
-    public ApiController(AccountRepository repository) {
+    public ApiController(AccountRepository repository)
+    {
         this.repository = repository;
     }
 
-    @GetMapping("/api/accounts")
-    public List<Account> returnAllAccounts()
+    AccountService service = new AccountService();
+
+
+    @GetMapping("/account/{id}")
+    public String root(Model model, @PathVariable("id") Long id )
     {
+        Account account = repository.findOne(id);
+
+        model.addAttribute("account", account);
+        return "account-view";
+    }
+
+    @GetMapping("/accounts")
+    public String viewAllAccounts(Model model)
+    {
+
         List<Account> accountList = repository.findAll();
-        return accountList;
 
+        model.addAttribute("accountList",accountList);
+        return "accounts";
     }
 
 
-    @GetMapping("/api/account/{id}")
-    public Account findById(@PathVariable("id") Long id)
-    {
-        Account account = null;
+    @GetMapping("/withdraw/{id}")
+    public String withdrawGet(Model model, @PathVariable("id") long id) {
+        // put the Account into the model
+        // create a new WithdrawForm and set its accountId
+
+        Account account = repository.findOne(id);
+        model.addAttribute("account", account);
 
 
-        if(id != null)
-        {
-           account = repository.findOne(id);
+        WithdrawForm form = new WithdrawForm();
+        form.setAccountId(id);
+        model.addAttribute("withdrawForm",form);
 
-        }
-
-        return account;
+        return "withdraw";
     }
 
-    @RequestMapping("/api/accounts/{id}")
-    public ResponseEntity<Account> handle(@PathVariable("id") String id) {
 
-        Account account = null;
-        Long longID = null;
+    @PostMapping("/withdraw")
+    public String withdrawPost(@ModelAttribute WithdrawForm form) {
+        // get the account ID from the form
+        // execute the withdraw on that account via the service
 
-        try
-        {
-            longID = Long.parseLong(id);
-        }
-        catch (NumberFormatException exp)
-        {
-            // ignore the exception throw from id
+        Account account = repository.findOne(form.getAccountId());
+        service.withdraw(account, form.getAmount());
 
-
-        }
-
-
-        if(longID != null)
-        {
-            account = repository.findOne(longID);
-            return ResponseEntity.ok(account);
-        }
-
-        return ResponseEntity.badRequest().build();
-
-
-
+        return "redirect:/account/" + form.getAccountId();
     }
+
+
+
 }

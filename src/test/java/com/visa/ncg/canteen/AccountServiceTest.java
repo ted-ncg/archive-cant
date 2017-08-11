@@ -76,4 +76,17 @@ public class AccountServiceTest {
         assertThatThrownBy(() -> {  service.withdraw(account, 100);}).isInstanceOf(IllegalArgumentException.class);
 
     }
+
+    @Test
+    public void transferThrowsExceptionWhenExceedingBalance()
+    {
+        Account source = new Account("Necessities", 100, 12);
+        Account target = new Account("Necessities", 10, 11);
+
+        AccountService service = new AccountService();
+
+
+        assertThatThrownBy(() -> {   service.transfer(source, target, 110);}).isInstanceOf(IllegalArgumentException.class);
+
+    }
 }
