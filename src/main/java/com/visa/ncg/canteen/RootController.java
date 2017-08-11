@@ -12,16 +12,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RootController {
     private AccountRepository accountRepository;
     private AccountService accountService;
+    private CurrencyService currencyService;
 
     @Autowired
-    public RootController(AccountRepository accountRepository, AccountService accountService) {
+    public RootController(AccountRepository accountRepository, AccountService accountService, CurrencyService currencyService) {
         this.accountRepository = accountRepository;
         this.accountService = accountService;
+        this.currencyService = currencyService;
     }
 
     @GetMapping("/account/{id}")
     public String accountView(Model model, @PathVariable("id") Long id) {
-        model.addAttribute("account", accountRepository.findOne(id));
+        Account account = accountRepository.findOne(id);
+        model.addAttribute("account", account);
+        model.addAttribute("converted", currencyService.convertToGbp(account.getBalance()));
         return "account-view";
     }
 
@@ -40,7 +44,9 @@ public class RootController {
 
     @PostMapping("/withdraw")
     public String withdrawPost(@ModelAttribute WithdrawForm form) {
-        accountService.withdraw(accountRepository.findOne(form.getAccountId()),form.getAmount());
+        Account account = accountRepository.findOne(form.getAccountId());
+        accountService.withdraw(account,form.getAmount());
+        accountRepository.save(account);
         return "redirect:/account/" + form.getAccountId();
     }
 }

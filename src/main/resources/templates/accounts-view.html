@@ -18,11 +18,13 @@
     <table>
         <tr>
             <th>Name</th>
-            <th>Balance</th>
+            <th>USD Balance</th>
+            <!--<th>GBP Balance</th>-->
         </tr>
         <tr th:each="account : ${accounts}">
             <td><a th:href="@{/account/{id}(id=${account.id})}" th:text="${account.name}">Generic Name</a></td>
-            <td th:text="${#numbers.formatCurrency(account.balance)}">10.50</td>
+            <td th:text="${#numbers.formatCurrency(account.balance)}">USD10.50</td>
+            <!--<td th:text="${#numbers.formatCurrency(converted)}">GBP10.50</td>-->
         </tr>
     </table>
 </body>
