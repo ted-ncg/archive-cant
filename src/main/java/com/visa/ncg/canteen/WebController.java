@@ -50,9 +50,9 @@ public class WebController {
 
         AccountService service = new AccountService();
         // execute the withdraw on that account via the service
-
-        service.withdraw(accountRepository.findOne(accountID), form.getAmount());
-
+        Account account = accountRepository.findOne(accountID);
+        service.withdraw(account, form.getAmount());
+        accountRepository.save(account);
         return "redirect:/account/" + form.getAccountId();
     }
 
