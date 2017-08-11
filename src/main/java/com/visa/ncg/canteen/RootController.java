@@ -22,12 +22,16 @@ public class RootController {
     }
 
     @GetMapping("/account/{id}")
-    public String accountView(Model model, @PathVariable("id") long id){
+    public String accountView(Model model, @PathVariable("id") long id, CurrencyService currencyService){
         Account account = accountRepository.find(id);
 //        if (account == null) {
 //            return "404";
 //        }
         model.addAttribute("account", account);
+
+        Currency currency = currencyService.convertToGBP(account.getBalance());
+        model.addAttribute("currency", currency);
+
         return "account-view";
     }
 
@@ -53,11 +57,9 @@ public class RootController {
     }
 
     @PostMapping("/withdraw")
-    public String withdrawPost(Model model, @ModelAttribute WithdrawForm form) {
+    public String withdrawPost(@ModelAttribute WithdrawForm form) {
         // get the account id from the form
         Account account = accountRepository.find(form.getAccountId());
-
-        model.addAttribute("account", account);
 
         // execute the withdraw on that account via the service
         AccountService accountService = new AccountService(accountRepository);
@@ -65,5 +67,7 @@ public class RootController {
 
         return "redirect:/account/" + form.getAccountId();
     }
+
+
 
 }

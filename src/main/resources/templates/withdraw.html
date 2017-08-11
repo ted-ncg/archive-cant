@@ -24,7 +24,7 @@
 <h2>How much to spend?</h2>
 <form action="#" th:action="@{/withdraw}" th:object="${withdrawForm}" method="post">
     <input type="hidden" th:field="*{accountId}"/>
-    <p>Amount: $<input th:field="*{amount}"/></p>
+    <p>Amount: $<input th:field="*{converted}"/></p>
     <p><button class="btn">Spend!</button></p>
 </form>
 </body>

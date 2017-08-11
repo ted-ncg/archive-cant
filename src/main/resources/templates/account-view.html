@@ -6,7 +6,8 @@
 </head>
 <body>
 <h1>Account: <span th:text="${account.type}">Name</span></h1>
-<p>Balance: <span th:text="${account.balance}"></span></p>
+<p><span th:text="${currency.from}">USD</span> Balance: <span th:text="${account.balance}"></span></p>
+<p><span th:text="${currency.to}">USD</span> Balance: <span th:text="${currency.converted}"></span></p>
 
 <br/>
 Want to: <a th:href="@{/withdraw/{id}(id=${account.id})}">Spend Money?</a>
